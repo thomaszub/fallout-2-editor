@@ -48,17 +48,17 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
         try:
             value = raw_input('[Value: {0}] New value: '.format(getter(name)))
         except KeyError as exc:
-            print str(exc)
+            print(str(exc))
             return
         try:
             value = int(value)
             if value < 0:
                 raise ValueError()
         except ValueError as exc:
-            print "Positive integer required."
+            print("Positive integer required.")
             return
         setter(name, value)
-        print "Done."
+        print("Done.")
 
     def do_set_skill(self, skill):
         """set_skill [skill]
@@ -96,19 +96,19 @@ if __name__ == '__main__':
     try:
         slots = os.listdir(save_path)
     except OSError as exc:
-        print "Unable to list files in: {0}".format(save_path)
-        print exc
+        print("Unable to list files in: {0}".format(save_path))
+        print(exc)
         exit(1)
-    print "Choose save to edit:"
+    print("Choose save to edit:")
     for i, slot in enumerate(slots):
-        print "[{0}]\t{1}".format(i, slot)
+        print("[{0}]\t{1}".format(i, slot))
     try:
         slot = int(raw_input('<0 - {0}> Edit: '.format(len(slots)-1)))
     except ValueError as exc:
-        print "You need an integer."
+        print("You need an integer.")
         exit(1)
     if slot > len(slots) or slot < 0:
-        print "Invalid slot."
+        print("Invalid slot.")
         exit(1)
     save = F2SaveFile(os.path.join(save_path, slots[slot]))
     EditShell(save).cmdloop()
