@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import os
+import sys
 import cmd
-import getpass
 
 from f2_save_file import F2SaveFile
 
@@ -90,9 +90,10 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
         exit(0)
 
 if __name__ == '__main__':
-    # Running on Windows/Linux/Non-GoG.com? Replace this path! 
-    save_path = "/Users/{0}/Library/Application Support/GOG.com/Fallout 2/saves".format(
-        getpass.getuser())
+    if len(sys.argv) != 2:
+        print("Exactly one argument expected: the path to the saved games.")
+        exit(1)
+    save_path = sys.argv[1]
     try:
         slots = os.listdir(save_path)
     except OSError as exc:
