@@ -212,7 +212,7 @@ class F2SaveFile(object):
             if section in ['weapons']:
                 c_item_start += 0x04
             #TODO Add containers
-            if not(section in ['armor', 'drugs']):
+            if section not in ['armor', 'drugs']:
                 c_item_start += 0x04
         return c_item_start + 0x04
 
