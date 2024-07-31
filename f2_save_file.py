@@ -184,7 +184,7 @@ class F2SaveFile(object):
                 if len(ps) % 2 != 0:
                     print("BAD LINE: {0}".format(line))
                     exit(1)
-                for i in xrange(0, len(ps), 2):
+                for i in range(0, len(ps), 2):
                     self.item_db[ps[i]] = {'name':ps[i+1], "section":section}
 
     def _find_f6(self):
