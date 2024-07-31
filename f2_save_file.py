@@ -69,7 +69,6 @@ class F2SaveFile(object):
         self.stats = ['str', 'agi', 'per', 'end', 'luc', 'int', 'cha']
         # Find Function 5
         self.hex_map['f5']['offset'] = self._find_address(self.f5_marker)
-        self.f5s = self._find_address(self.f5_marker)
         # Find Function 6
         self.hex_map['f6']['offset'] = self._find_f6()
         # And Function 9, based on where Function 6 is.
@@ -189,7 +188,7 @@ class F2SaveFile(object):
 
     def _find_f6(self):
         """ Region without a fixed start index. """
-        items_start = 0x80 + self.f5s
+        items_start = 0x80 + self.hex_map['f5']['offset']
         item_size = 0x58 + 0x04
         always_zero = [0x0C, 0x10, 0x40, 0x58]
         #always_neg_one = [0x34, 0x48]
