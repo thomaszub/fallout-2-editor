@@ -46,7 +46,7 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
     def _modify_value(self, name, getter, setter):
         """Wrapper for the modifier functions."""
         try:
-            value = raw_input('[Value: {0}] New value: '.format(getter(name)))
+            value = input('[Value: {0}] New value: '.format(getter(name)))
         except KeyError as exc:
             print(str(exc))
             return
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     for i, slot in enumerate(slots):
         print("[{0}]\t{1}".format(i, slot))
     try:
-        slot = int(raw_input('<0 - {0}> Edit: '.format(len(slots)-1)))
+        slot = int(input('<0 - {0}> Edit: '.format(len(slots)-1)))
     except ValueError:
         print("You need an integer.")
         exit(1)
