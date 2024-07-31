@@ -54,7 +54,7 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
             value = int(value)
             if value < 0:
                 raise ValueError()
-        except ValueError as exc:
+        except ValueError:
             print("Positive integer required.")
             return
         setter(name, value)
@@ -104,7 +104,7 @@ if __name__ == '__main__':
         print("[{0}]\t{1}".format(i, slot))
     try:
         slot = int(raw_input('<0 - {0}> Edit: '.format(len(slots)-1)))
-    except ValueError as exc:
+    except ValueError:
         print("You need an integer.")
         exit(1)
     if slot > len(slots) or slot < 0:
