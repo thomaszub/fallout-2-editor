@@ -230,6 +230,8 @@ class F2SaveFile(object):
         return self.mm_save.find(marker)
 
     def print_info(self):
+        savename = self.get_value("header", "savename").rstrip(b"\x00").decode("utf-8")
+        charname = self.get_value("header", "name").rstrip(b"\x00").decode("utf-8")
         print(
-            f"Save Name: '{self.get_value("header", "savename")}'\tCharacter: '{self.get_value("header", "name")}'"
+            f"Save Name: '{savename}'\tCharacter: '{charname}'"
         )
