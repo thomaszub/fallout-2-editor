@@ -119,7 +119,7 @@ class F2SaveFile(object):
 
     def get_skill(self, name):
         if name not in self.skills:
-            raise KeyError('No skill named "{0}"'.format(name))
+            raise KeyError(f'No skill named "{name}"')
         return self._fetch_int(
             self.hex_map["f6"]["offset"]
             + self.hex_map["f6"]["keys"]["skills"][0]
@@ -129,7 +129,7 @@ class F2SaveFile(object):
 
     def set_skill(self, name, value):
         if name not in self.skills:
-            raise KeyError('No skill named "{0}"'.format(name))
+            raise KeyError(f'No skill named "{name}"')
         self.set_int(
             self.hex_map["f6"]["offset"]
             + self.hex_map["f6"]["keys"]["skills"][0]
@@ -139,41 +139,41 @@ class F2SaveFile(object):
 
     def get_perk(self, name):
         if name not in self.perks:
-            raise KeyError('No perk named "{0}"'.format(name))
+            raise KeyError(f'No perk named "{name}"')
         return self._fetch_int(self.hex_map["f9"]["offset"] + self.perks[name], 0x04)
 
     def set_perk(self, name, val=1):
         if name not in self.perks:
-            raise KeyError('No perk named "{0}"'.format(name))
+            raise KeyError(f'No perk named "{name}"')
         self.set_int(self.hex_map["f9"]["offset"] + self.perks[name], val)
 
     def get_stat(self, name):
         if name not in self.stats:
-            raise KeyError('No stat named "{0}"'.format(name))
+            raise KeyError(f'No stat named "{name}"')
         return self.get_int("f6", "base_" + name)
 
     def set_stat(self, name, value):
         if name not in self.stats:
-            raise KeyError('No stat named "{0}"'.format(name))
+            raise KeyError(f'No stat named "{name}"')
         self.set_function_int("f6", "base_" + name, value)
 
     def print_skills(self):
-        print("{:<15} {:<30}".format("Skill", "Value"))
+        print(f"{"Skill":<15} {"Value":<30}")
         print(21 * "-")
         for skill in sorted(self.skills.keys()):
-            print("{:<15} {:<30}".format(skill, self.get_skill(skill)))
+            print(f"{skill:<15} {self.get_skill(skill):<30}")
 
     def print_perks(self):
-        print("{:<40} {:<6}".format("Perk", "Value"))
+        print(f"{"Perk":<40} {"Value":<6}")
         print(46 * "-")
         for perk in sorted(self.perks.keys()):
-            print("{:<40} {:<6}".format(perk, self.get_perk(perk)))
+            print(f"{perk:<40} {self.get_perk(perk):<6}")
 
     def print_stats(self):
-        print("{:<15} {:<30}".format("Stat", "Value"))
+        print(f"{"Stat":<15} {"Value":<30}")
         print(21 * "-")
         for stat in sorted(self.stats):
-            print("{:<15} {:<30}".format(stat, self.get_stat(stat)))
+            print(f"{stat:<15} {self.get_stat(stat):<30}")
 
     def _load_items(self):
         fname = os.path.join("data", "f2items.csv")
@@ -190,7 +190,7 @@ class F2SaveFile(object):
                     continue
                 ps = line.split(",")
                 if len(ps) % 2 != 0:
-                    print("BAD LINE: {0}".format(line))
+                    print(f"BAD LINE: {line}")
                     exit(1)
                 for i in range(0, len(ps), 2):
                     self.item_db[ps[i]] = {"name": ps[i + 1], "section": section}
@@ -231,7 +231,5 @@ class F2SaveFile(object):
 
     def print_info(self):
         print(
-            "Save Name: '{0}'\tCharacter: '{1}'".format(
-                self.get_value("header", "savename"), self.get_value("header", "name")
-            )
+            f"Save Name: '{self.get_value("header", "savename")}'\tCharacter: '{self.get_value("header", "name")}'"
         )

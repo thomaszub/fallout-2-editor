@@ -47,7 +47,7 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
     def _modify_value(self, name, getter, setter):
         """Wrapper for the modifier functions."""
         try:
-            value = input("[Value: {0}] New value: ".format(getter(name)))
+            value = input(f"[Value: {getter(name)}] New value: ")
         except KeyError as exc:
             print(str(exc))
             return
@@ -99,14 +99,14 @@ if __name__ == "__main__":
     try:
         slots = os.listdir(save_path)
     except OSError as exc:
-        print("Unable to list files in: {0}".format(save_path))
+        print(f"Unable to list files in: {save_path}")
         print(exc)
         exit(1)
     print("Choose save to edit:")
     for i, slot in enumerate(slots):
-        print("[{0}]\t{1}".format(i, slot))
+        print(f"[{i}]\t{slot}")
     try:
-        slot = int(input("<0 - {0}> Edit: ".format(len(slots) - 1)))
+        slot = int(input(f"<0 - {len(slots) - 1}> Edit: "))
     except ValueError:
         print("You need an integer.")
         exit(1)
