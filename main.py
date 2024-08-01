@@ -6,10 +6,11 @@ import cmd
 
 from f2_save_file import F2SaveFile
 
-class EditShell(cmd.Cmd):
-    """ Basic shell for F2SaveFile."""
 
-    prompt = 'Command: '
+class EditShell(cmd.Cmd):
+    """Basic shell for F2SaveFile."""
+
+    prompt = "Command: "
     intro = """Fallout 2 Save Game Editor. <Tab> completion is available everywhere.
 The file is edited as soon as you make a change. ('exit' to exit.)"""
 
@@ -46,7 +47,7 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
     def _modify_value(self, name, getter, setter):
         """Wrapper for the modifier functions."""
         try:
-            value = input('[Value: {0}] New value: '.format(getter(name)))
+            value = input("[Value: {0}] New value: ".format(getter(name)))
         except KeyError as exc:
             print(str(exc))
             return
@@ -89,7 +90,8 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
         Terminate shell"""
         exit(0)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Exactly one argument expected: the path to the saved games.")
         exit(1)
@@ -104,7 +106,7 @@ if __name__ == '__main__':
     for i, slot in enumerate(slots):
         print("[{0}]\t{1}".format(i, slot))
     try:
-        slot = int(input('<0 - {0}> Edit: '.format(len(slots)-1)))
+        slot = int(input("<0 - {0}> Edit: ".format(len(slots) - 1)))
     except ValueError:
         print("You need an integer.")
         exit(1)
