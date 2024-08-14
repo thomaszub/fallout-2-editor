@@ -23,7 +23,7 @@ Command: help
 
 Documented commands (type help <topic>):
 ========================================
-exit  gender  help  perks  set_gender  set_perk  set_skill  set_stat  skills  stats
+exit  gender  help  name  perks  set_gender  set_name  set_perk  set_skill  set_stat  skills  stats
 ```
 and you can explore the different commands by ```help <command>```
 ```

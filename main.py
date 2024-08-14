@@ -52,6 +52,16 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
         except ValueError:
             print("0 or 1 required.")
 
+    def do_name(self, ignored_line):
+        """name
+        List character name."""
+        self.save_file.print_name()
+
+    def do_set_name(self, name):
+        """set_name [name]
+        Modify name, max. 31 ASCII characters."""
+        self.save_file.set_name(name)
+
     def __get_completion(self, text, keys):
         """Generate tab completion values."""
         if not text:

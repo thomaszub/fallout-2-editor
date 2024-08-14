@@ -163,6 +163,20 @@ class F2SaveFile(object):
     def set_gender(self, value):
         self.set_function_int("f6", "female", value)
 
+    def get_name(self):
+        return self.get_value("header", "name")
+
+    def set_name(self, value):
+        name_length = self.hex_map["header"]["keys"]["name"][1]
+        bytes = value.encode("ascii")
+        if len(bytes) > name_length:
+            print("Name too long. Max 31 characters.")
+            return
+        if len(bytes) < name_length:
+            bytes += b"\x00" * (name_length - len(bytes))
+        offs = self.hex_map["header"]["offset"] + self.hex_map["header"]["keys"]["name"][0]
+        self.mm_save[offs : offs + name_length] = bytes
+
     def print_skills(self):
         print(f"{"Skill":<15} {"Value":<30}")
         print(21 * "-")
@@ -185,6 +199,9 @@ class F2SaveFile(object):
         gender = self.get_gender()
         gender_text = f"{gender} ({"female" if gender != 0 else "male"})"
         print(f"Gender: {gender_text}")
+
+    def print_name(self):
+        print(f"Name: {self.get_name().decode("ascii")}")
 
     def _load_items(self):
         fname = os.path.join("data", "f2items.csv")
