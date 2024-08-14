@@ -157,6 +157,12 @@ class F2SaveFile(object):
             raise KeyError(f'No stat named "{name}"')
         self.set_function_int("f6", "base_" + name, value)
 
+    def get_gender(self):
+        return self.get_int("f6", "female")
+
+    def set_gender(self, value):
+        self.set_function_int("f6", "female", value)
+
     def print_skills(self):
         print(f"{"Skill":<15} {"Value":<30}")
         print(21 * "-")
@@ -174,6 +180,11 @@ class F2SaveFile(object):
         print(21 * "-")
         for stat in sorted(self.stats):
             print(f"{stat:<15} {self.get_stat(stat):<30}")
+
+    def print_gender(self):
+        gender = self.get_gender()
+        gender_text = f"{gender} ({"female" if gender != 0 else "male"})"
+        print(f"Gender: {gender_text}")
 
     def _load_items(self):
         fname = os.path.join("data", "f2items.csv")

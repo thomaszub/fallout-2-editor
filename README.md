@@ -23,7 +23,7 @@ Command: help
 
 Documented commands (type help <topic>):
 ========================================
-exit  help  perks  set_perk  set_skill  set_stat  skills  stats
+exit  gender  help  perks  set_gender  set_perk  set_skill  set_stat  skills  stats
 ```
 and you can explore the different commands by ```help <command>```
 ```
@@ -46,6 +46,7 @@ Done.
 *Caveats:* 
 - Skills are the unmodified value (so for a new game all values are 0.)
 - Some perks can be set to more than `1`, but not all support it (and might crash the game.)
+- Changing the gender needs reapplying the armor to change the appearance
 
 ## Todo
 - Add item editing.

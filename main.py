@@ -36,6 +36,22 @@ The file is edited as soon as you make a change. ('exit' to exit.)"""
         List stats and current values."""
         self.save_file.print_stats()
 
+    def do_gender(self, ignored_line):
+        """gender
+        List gender: female (1) or male (0)."""
+        self.save_file.print_gender()
+
+    def do_set_gender(self, gender):
+        """set_gender [gender]
+        Modify gender. 1 for Female and 0 for male."""
+        try:
+            value = int(gender)
+            if value != 0 and value != 1:
+                raise ValueError()
+            self.save_file.set_gender(value)
+        except ValueError:
+            print("0 or 1 required.")
+
     def __get_completion(self, text, keys):
         """Generate tab completion values."""
         if not text:
