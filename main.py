@@ -14,7 +14,7 @@ class EditShell(cmd.Cmd):
     intro = """Fallout 2 Save Game Editor. <Tab> completion is available everywhere.
 The file is edited as soon as you make a change. ('exit' to exit.)"""
 
-    def __init__(self, save_file):
+    def __init__(self, save_file: F2SaveFile):
         self.save_file = save_file
         self.skills = self.save_file.skills.keys()
         self.perks = self.save_file.perks.keys()
